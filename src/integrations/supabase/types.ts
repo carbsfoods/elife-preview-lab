@@ -14,7 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      agents: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          panchayath_id: string
+          phone_number: string
+          role: Database["public"]["Enums"]["agent_role"]
+          superior_id: string | null
+          updated_at: string
+          ward: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          panchayath_id: string
+          phone_number: string
+          role: Database["public"]["Enums"]["agent_role"]
+          superior_id?: string | null
+          updated_at?: string
+          ward?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          panchayath_id?: string
+          phone_number?: string
+          role?: Database["public"]["Enums"]["agent_role"]
+          superior_id?: string | null
+          updated_at?: string
+          ward?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agents_panchayath_id_fkey"
+            columns: ["panchayath_id"]
+            isOneToOne: false
+            referencedRelation: "panchayaths"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agents_superior_id_fkey"
+            columns: ["superior_id"]
+            isOneToOne: false
+            referencedRelation: "agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      panchayaths: {
+        Row: {
+          created_at: string
+          district: string
+          hierarchy_file_url: string | null
+          id: string
+          name: string
+          number_of_wards: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          district: string
+          hierarchy_file_url?: string | null
+          id?: string
+          name: string
+          number_of_wards: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          district?: string
+          hierarchy_file_url?: string | null
+          id?: string
+          name?: string
+          number_of_wards?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +103,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      agent_role: "coordinator" | "supervisor" | "group_leader" | "pro"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +230,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      agent_role: ["coordinator", "supervisor", "group_leader", "pro"],
+    },
   },
 } as const
