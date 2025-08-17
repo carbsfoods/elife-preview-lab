@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import DashboardCard from "@/components/DashboardCard";
+import Navigation from "@/components/Navigation";
 import { Users, FileText, CheckSquare, Settings } from "lucide-react";
 
 const Index = () => {
@@ -38,6 +39,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-background" />
