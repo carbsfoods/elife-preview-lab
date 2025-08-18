@@ -65,6 +65,44 @@ export type Database = {
           },
         ]
       }
+      daily_notes: {
+        Row: {
+          agent_id: string
+          created_at: string
+          description: string
+          id: string
+          note_date: string
+          points_earned: number | null
+          updated_at: string
+        }
+        Insert: {
+          agent_id: string
+          created_at?: string
+          description: string
+          id?: string
+          note_date: string
+          points_earned?: number | null
+          updated_at?: string
+        }
+        Update: {
+          agent_id?: string
+          created_at?: string
+          description?: string
+          id?: string
+          note_date?: string
+          points_earned?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_notes_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       panchayaths: {
         Row: {
           created_at: string
@@ -91,6 +129,33 @@ export type Database = {
           id?: string
           name?: string
           number_of_wards?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      points_system: {
+        Row: {
+          bonus_points_allowed: boolean | null
+          created_at: string
+          daily_points: number
+          id: string
+          role: Database["public"]["Enums"]["agent_role"]
+          updated_at: string
+        }
+        Insert: {
+          bonus_points_allowed?: boolean | null
+          created_at?: string
+          daily_points?: number
+          id?: string
+          role: Database["public"]["Enums"]["agent_role"]
+          updated_at?: string
+        }
+        Update: {
+          bonus_points_allowed?: boolean | null
+          created_at?: string
+          daily_points?: number
+          id?: string
+          role?: Database["public"]["Enums"]["agent_role"]
           updated_at?: string
         }
         Relationships: []

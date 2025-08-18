@@ -8,6 +8,7 @@ import AgentManagement from "@/components/admin/AgentManagement";
 import HierarchyView from "@/components/admin/HierarchyView";
 import TeamManagement from "@/components/admin/TeamManagement";
 import TaskManagement from "@/components/admin/TaskManagement";
+import ReportsManagement from "@/components/admin/ReportsManagement";
 import Navigation from "@/components/Navigation";
 
 const AgentAdmin = () => {
@@ -49,6 +50,13 @@ const AgentAdmin = () => {
       description: "Assign tasks to individuals or teams, track progress",
       icon: <ClipboardList className="h-6 w-6" />,
       component: <TaskManagement />
+    },
+    {
+      id: "reports",
+      title: "Reports",
+      description: "Agent performance, leave reports, and analytics dashboard",
+      icon: <Building2 className="h-6 w-6" />,
+      component: <ReportsManagement />
     }
   ];
 
